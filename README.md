@@ -1,5 +1,6 @@
 # WebSocket Chat Application
-A real-time chat application built with a Rust backend (Axum + Kafka) and a Next.js/React frontend. Features real-time messaging, active user tracking, and persistent message storage.
+This is a real-time chat application built with a Rust backend (Axum + Kafka) and a Next.js/React frontend. 
+The features include real-time messaging, active user tracking, and persistent message storage.
 
 ## Features
 **Real-time Messaging:** Instant message delivery via WebSockets
