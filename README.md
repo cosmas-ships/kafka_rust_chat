@@ -1,4 +1,4 @@
-#WebSocket Chat Application
+# WebSocket Chat Application
 A real-time chat application built with a Rust backend (Axum + Kafka) and a Next.js/React frontend. Features real-time messaging, active user tracking, and persistent message storage.
 
 ##🚀 Features
