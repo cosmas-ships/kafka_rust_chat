@@ -1,7 +1,7 @@
 # WebSocket Chat Application
 A real-time chat application built with a Rust backend (Axum + Kafka) and a Next.js/React frontend. Features real-time messaging, active user tracking, and persistent message storage.
 
-##🚀 Features
+## 🚀 Features
 Real-time Messaging: Instant message delivery via WebSockets
 
 Active User Tracking: See who's currently online with live status updates
@@ -14,7 +14,7 @@ User Identification: Unique usernames with session management
 
 Auto-scroll: Automatic scrolling to the latest messages
 
-##🏗️ Architecture
+## 🏗️ Architecture
 Frontend (Next.js/React)
         ↓
 WebSocket Connection
@@ -23,14 +23,14 @@ Rust Backend (Axum)
         ↓
 Apache Kafka
 
-##📋 Prerequisites
+## 📋 Prerequisites
 Node.js 18+ and npm
 
 Rust and Cargo
 
 Apache Kafka running on localhost:9092
 
-##🛠️ Installation & Setup
+## 🛠️ Installation & Setup
 1. Backend Setup
 bash Clone the repository
 git clone <repository-url>
@@ -58,7 +58,8 @@ Make sure Kafka is running and create the required topic:
 
 bash
 kafka-topics.sh --create --topic chat-room --bootstrap-server localhost:9092
-🎯 Usage
+
+## 🎯 Usage
 Access the Application: Open http://localhost:3000 in your browser
 
 Set Username: Enter your username when prompted
@@ -67,7 +68,7 @@ Start Chatting: Type messages and press Enter or click Send
 
 View Active Users: See online users in the right sidebar
 
-##📱 Features in Detail
+## 📱 Features in Detail
 Real-time Messaging
 Messages appear instantly for all connected users
 
@@ -90,7 +91,7 @@ interface ChatMessage {
   text: string        // Message content
   timestamp: string   // ISO timestamp
 }
-##🔧 Configuration
+## 🔧 Configuration
 Backend Configuration
 WebSocket Port: 3001
 
@@ -103,7 +104,7 @@ WebSocket URL: ws://localhost:3001/ws
 
 Development Server: http://localhost:3000
 
-##🗂️ Project Structure
+## 🗂️ Project Structure
 text
 websocket-chat-app/
 ├── backend/
@@ -116,7 +117,7 @@ websocket-chat-app/
     │       └── page.tsx     # React chat component
     ├── package.json
     └── next.config.js
-##🎨 UI Components
+## 🎨 UI Components
 Message Bubbles: Distinct styling for sent vs received messages
 
 User Sidebar: Real-time active user list with status indicators
@@ -125,7 +126,7 @@ Input Area: Clean message input with send button
 
 Header: Application title and description
 
-##🔄 Message Flow
+## 🔄 Message Flow
 User types message → Frontend sends via WebSocket
 
 Backend receives message → Adds UUID and timestamp
@@ -136,7 +137,7 @@ Backend broadcasts to all clients → Real-time delivery
 
 Frontend displays message → Updates UI immediately
 
-##🛠️ Development
+## 🛠️ Development
 Backend Dependencies
 axum: Web framework with WebSocket support
 
@@ -157,7 +158,7 @@ uuid: Unique ID generation
 
 Lucide React: Icons
 
-##🐛 Troubleshooting
+## 🐛 Troubleshooting
 Common Issues
 WebSocket Connection Failed
 
@@ -177,7 +178,7 @@ Clear node_modules and reinstall dependencies
 
 Check Node.js version compatibility
 
-##📈 Future Enhancements
+## 📈 Future Enhancements
 Message history loading
 
 Private messaging
@@ -194,7 +195,7 @@ Message search
 
 Mobile app
 
-##🤝 Contributing
+## 🤝 Contributing
 Fork the repository
 
 Create a feature branch
@@ -205,7 +206,7 @@ Push to the branch
 
 Open a Pull Request
 
-##📄 License
+## 📄 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-###Happy Chatting! 🎉
+### Happy Chatting! 🎉
