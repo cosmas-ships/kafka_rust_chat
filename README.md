@@ -26,45 +26,56 @@ Apache Kafka
 ```
 
 ## Prerequisites
-Node.js 18+ and npm
+  -Node.js 18+ and npm
+  
+  -Rust and Cargo
 
-Rust and Cargo
-
-Apache Kafka running on localhost:9092
+  -Apache Kafka running on localhost:9092
 
 ## Installation & Setup
 1. Backend Setup
-bash Clone the repository
+   Clone the repository
 ```
 git clone git@github.com:cosmas-ships/kafka_rust_chat.git
 cd kafka_rust_chat
 ```
 
 ### Start the Rust backend
+```
 cd backend
 cargo run
+```
 Backend will start on: ws://localhost:3001
 
 2. Frontend Setup
-bash
 ### In a new terminal, navigate to frontend
+```
 cd frontend
-
+```
 # Install dependencies
+```
 npm install
-
+```
 # Start the development server
+```
 npm run dev
-Frontend will start on: http://localhost:3000
-
+```
+Frontend will start on: 
+```
+http://localhost:3000
+```
 3. Kafka Setup
 Make sure Kafka is running and create the required topic:
 
-bash
+```
 kafka-topics.sh --create --topic chat-room --bootstrap-server localhost:9092
-
+```
 ## Usage
-Access the Application: Open http://localhost:3000 in your browser
+Access the Application: Open 
+```
+http://localhost:3000
+```
+in your browser
 
 Set Username: Enter your username when prompted
 
