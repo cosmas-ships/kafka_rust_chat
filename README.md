@@ -71,28 +71,29 @@ Start Chatting: Type messages and press Enter or click Send
 View Active Users: See online users in the right sidebar
 
 ## Features in Detail
-Real-time Messaging
+-Real-time Messaging
 Messages appear instantly for all connected users
 
-Timestamps show when each message was sent
+-Timestamps show when each message was sent
 
-Visual distinction between your messages and others'
+-Visual distinction between your messages and others'
 
-Active User Tracking
+-Active User Tracking
 Green status indicators show online users
 
-Users automatically removed after 5 minutes of inactivity
+-Users automatically removed after 5 minutes of inactivity
 
-Real-time updates when users join or leave
+-Real-time updates when users join or leave
 
 Message Format
-typescript
+```
 interface ChatMessage {
   sender_id: string    // Unique user identifier
   username: string     // Display name
   text: string        // Message content
   timestamp: string   // ISO timestamp
 }
+```
 ## Configuration
 Backend Configuration
 WebSocket Port: 3001
@@ -107,7 +108,7 @@ WebSocket URL: ws://localhost:3001/ws
 Development Server: http://localhost:3000
 
 ## Project Structure
-text
+```
 websocket-chat-app/
 ├── backend/
 │   ├── src/
@@ -119,14 +120,15 @@ websocket-chat-app/
     │       └── page.tsx     # React chat component
     ├── package.json
     └── next.config.js
+```
 ## UI Components
-Message Bubbles: Distinct styling for sent vs received messages
+**Message Bubbles**: Distinct styling for sent vs received messages
 
-User Sidebar: Real-time active user list with status indicators
+**User Sidebar:** Real-time active user list with status indicators
 
-Input Area: Clean message input with send button
+**Input Area:** Clean message input with send button
 
-Header: Application title and description
+**Header:** Application title and description
 
 ## Message Flow
 User types message → Frontend sends via WebSocket
@@ -141,6 +143,7 @@ Frontend displays message → Updates UI immediately
 
 ## Development
 Backend Dependencies
+```
 axum: Web framework with WebSocket support
 
 rdkafka: Kafka client for Rust
@@ -159,6 +162,7 @@ WebSocket API: Native browser WebSocket
 uuid: Unique ID generation
 
 Lucide React: Icons
+```
 
 ## Troubleshooting
 Common Issues
@@ -198,17 +202,17 @@ Message search
 Mobile app
 
 ## Contributing
-Fork the repository
+-Fork the repository
 
-Create a feature branch
+-Create a feature branch
 
-Commit your changes
+-Commit your changes
 
-Push to the branch
+-Push to the branch
 
-Open a Pull Request
+-Open a Pull Request
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-### Happy Chatting! 🎉
+#### Happy Chatting! 🎉
