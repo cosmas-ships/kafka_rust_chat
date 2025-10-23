@@ -1,0 +1,13 @@
+[package]
+name = "kafka_ws_chat"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = { version = "0.7", features = ["ws"] }
+futures-util = "0.3"
+rdkafka = { version = "0.36", features = ["cmake-build"] }
+tokio = { version = "1", features = ["full"] }
+serde_json = "1.0"
+uuid = { version = "1", features = ["v4"] }
+chrono = { version = "0.4", features = ["serde", "clock"] }
