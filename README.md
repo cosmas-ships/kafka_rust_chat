@@ -2,17 +2,17 @@
 A real-time chat application built with a Rust backend (Axum + Kafka) and a Next.js/React frontend. Features real-time messaging, active user tracking, and persistent message storage.
 
 ## Features
-** Real-time Messaging: ** Instant message delivery via WebSockets
+**Real-time Messaging:** Instant message delivery via WebSockets
 
-Active User Tracking: See who's currently online with live status updates
+**Active User Tracking:** See who's currently online with live status updates
 
-Message Persistence: All messages stored in Kafka for durability
+**Message Persistence:** All messages stored in Kafka for durability
 
-Modern UI: Clean, responsive interface with message timestamps
+**Modern UI:** Clean, responsive interface with message timestamps
 
-User Identification: Unique usernames with session management
+**User Identification:** Unique usernames with session management
 
-Auto-scroll: Automatic scrolling to the latest messages
+**Auto-scroll:** Automatic scrolling to the latest messages
 
 ## Architecture
 Frontend (Next.js/React)
@@ -33,8 +33,10 @@ Apache Kafka running on localhost:9092
 ## Installation & Setup
 1. Backend Setup
 bash Clone the repository
+```
 git clone <repository-url>
 cd kafka_rust_chat
+```
 
 ### Start the Rust backend
 cd backend
