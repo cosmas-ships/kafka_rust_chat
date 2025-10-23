@@ -34,7 +34,7 @@ Apache Kafka running on localhost:9092
 1. Backend Setup
 bash Clone the repository
 ```
-git clone <repository-url>
+git clone git@github.com:cosmas-ships/kafka_rust_chat.git
 cd kafka_rust_chat
 ```
 
