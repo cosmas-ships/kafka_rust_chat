@@ -15,6 +15,7 @@ A real-time chat application built with a Rust backend (Axum + Kafka) and a Next
 **Auto-scroll:** Automatic scrolling to the latest messages
 
 ## Architecture
+```
 Frontend (Next.js/React)
         ↓
 WebSocket Connection
@@ -22,6 +23,7 @@ WebSocket Connection
 Rust Backend (Axum)
         ↓
 Apache Kafka
+```
 
 ## Prerequisites
 Node.js 18+ and npm
