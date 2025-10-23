@@ -40,7 +40,7 @@ git clone git@github.com:cosmas-ships/kafka_rust_chat.git
 cd kafka_rust_chat
 ```
 
-#### Start the Rust backend
+Start the Rust backend
 ```
 cd backend
 cargo run
@@ -52,11 +52,11 @@ In a new terminal, navigate to frontend
 ```
 cd frontend
 ```
-#### Install dependencies
+Install dependencies
 ```
 npm install
 ```
-#### Start the development server
+Start the development server
 ```
 npm run dev
 ```
