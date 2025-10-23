@@ -19,25 +19,34 @@ use std::time::Duration;
 use tokio::{sync::broadcast, task::JoinHandle};
 use uuid::Uuid;
 
-use std::{collections::HashSet, sync::{Arc, Mutex}};
-
+use std::{
+    collections::HashSet,
+    sync::{Arc, Mutex},
+};
 
 #[tokio::main]
 async fn main() {
+    // Create a broadcast channel for Strings with capacity 100
     let (tx, _rx) = broadcast::channel::<String>(100);
 
+    // Create a Kafka producer connected to local Kafka broker
+    // FutureProducer allows async message sending with awaitable results
     let producer: FutureProducer = ClientConfig::new()
         .set("bootstrap.servers", "localhost:9092")
         .create()
         .expect("Producer creation failed");
 
+    // Create a unique Kafka consumer that starts reading from the latest messages
+    // Each instance gets a random group ID to avoid offset conflicts
     let consumer: StreamConsumer = ClientConfig::new()
         .set("bootstrap.servers", "localhost:9092")
-        .set("group.id", Uuid::new_v4().to_string())
-        .set("auto.offset.reset", "latest")
+        .set("group.id", Uuid::new_v4().to_string()) // Unique ID for this consumer
+        .set("auto.offset.reset", "latest") // Start from newest messages
         .create()
         .expect("Consumer creation failed");
 
+    // Subscribe to the "chat-room" Kafka topic to start receiving messages
+    // If subscription fails, the application cannot function properly
     consumer
         .subscribe(&["chat-room"])
         .expect("Can't subscribe to chat-room");
@@ -47,18 +56,24 @@ async fn main() {
 
     let tx_clone = tx.clone();
     let seen_clone = seen_messages.clone();
+
+    // Background task: Consume Kafka messages, deduplicate, and broadcast
     tokio::spawn(async move {
+        // Create a stream of incoming Kafka messages
         let mut stream = consumer.stream();
+
+        // Continuously poll for new messages in an infinite loop
         while let Some(result) = stream.next().await {
             if let Ok(msg) = result {
                 if let Some(Ok(text)) = msg.payload_view::<str>() {
                     if let Ok(value) = serde_json::from_str::<serde_json::Value>(text) {
                         if let Some(id) = value["id"].as_str() {
+                            // Critical section: Check and update seen messages
                             let mut seen = seen_clone.lock().unwrap();
                             if !seen.contains(id) {
                                 seen.insert(id.to_string());
-                                println!("Kafka → {}", text);
-                                let _ = tx_clone.send(text.to_string());
+                                // println!("Kafka → {}", text);
+                                let _ = tx_clone.send(text.to_string()); // Fire-and-forget broadcast
                             }
                         }
                     }
@@ -67,28 +82,50 @@ async fn main() {
         }
     });
 
+    // Configure Axum web server with WebSocket support
     let app = Router::new()
+        // Register WebSocket handler for /ws endpoint
+        // When clients connect to ws://localhost:3001/ws, handle_ws function will be called
         .route("/ws", get(handle_ws))
-        .with_state((tx.clone(), producer, seen_messages));
+        // Share application state across all request handlers
+        // This state will be available in the handle_ws function
+        .with_state((
+            tx.clone(), // Clone of broadcast sender - allows sending messages to all connected WebSocket clients
+            producer,   // Kafka producer instance - for publishing messages to Kafka topics
+            seen_messages, // Thread-safe set of processed message IDs - prevents duplicate processing
+        ));
 
+    // Inform developer about server status
     println!("WebSocket server running at ws://localhost:3001/ws");
 
+    // Start the web server
     axum::serve(
-        tokio::net::TcpListener::bind("0.0.0.0:3001")
-            .await
-            .unwrap(),
-        app,
+        // Create TCP listener that accepts connections on all network interfaces
+        // "0.0.0.0:3001" means accessible from any IP address on port 3001
+        tokio::net::TcpListener::bind("0.0.0.0:3001").await.unwrap(),
+        app, // Mount our application router
     )
     .await
-    .unwrap();
+    .unwrap(); // Server will run until manually stopped or an error occurs
 }
 
+
+/// WebSocket connection handler - upgrades HTTP requests to WebSocket connections
+/// This function is called when a client initiates a WebSocket handshake at /ws
 async fn handle_ws(
+    // WebSocket upgrade request - provided by Axum automatically
     ws: WebSocketUpgrade,
-    State((tx, producer, seen_messages)): State<(broadcast::Sender<String>, FutureProducer, Arc<Mutex<HashSet<String>>>)>,
+    // Extract shared application state from the router
+    State((tx, producer, seen_messages)): State<(
+        broadcast::Sender<String>,  // For broadcasting messages to all clients
+        FutureProducer,             // For sending messages to Kafka
+        Arc<Mutex<HashSet<String>>>, // For tracking processed message IDs
+    )>,
 ) -> impl IntoResponse {
+    // Complete the WebSocket handshake and spawn the actual connection handler
     ws.on_upgrade(move |socket| handle_socket(socket, tx, producer, seen_messages))
 }
+
 
 pub async fn handle_socket(
     socket: WebSocket,
