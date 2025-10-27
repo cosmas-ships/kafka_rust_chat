@@ -1,6 +1,18 @@
 # WebSocket Chat Application
-Kafka Chat is a real-time chat application that blends Rust's performance with Next.js' modern UI.
-Powered by Axum, Kafka, and React, it showcases how microservices, streaming, and web technologies come together to deliver seamless, real-time communication.
+Kafka Chat is a real-time chat application built with a Rust (Axum + Kafka) backend and a Next.js/React frontend.
+This project started as an exploration of how modern systems handle real-time communication, scalability, and fault tolerance, and it evolved into a complete learning experience in microservice architecture, event-driven design, and frontend–backend integration.
+
+Throughout the build, I learned how to:
+
+- Stream real-time data using Kafka and WebSockets
+
+- Build a scalable API with Axum in Rust
+
+- Manage state and user activity efficiently across services
+
+- Design clean, responsive UIs in Next.js/React
+
+- Write clear, well-documented code that others can easily follow and extend
 
 ## Features
 **Real-time Messaging:** Instant message delivery via WebSockets
