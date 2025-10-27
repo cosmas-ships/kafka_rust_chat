@@ -167,8 +167,9 @@ tokio: Async runtime
 uuid: Unique ID generation
 
 chrono: Timestamp handling
-
+```
 Frontend Dependencies
+```
 React: UI framework
 
 WebSocket API: Native browser WebSocket
