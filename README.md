@@ -180,41 +180,42 @@ Lucide React: Icons
 ```
 
 ## Troubleshooting
-Common Issues
+### Common Issues
+
 WebSocket Connection Failed
 
-Ensure backend is running on port 3001
+- Ensure backend is running on port 3001
 
-Check ws://localhost:3001/ws is accessible
+- Check ws://localhost:3001/ws is accessible
 
 Kafka Connection Issues
 
-Verify Kafka is running on localhost:9092
+- Verify Kafka is running on localhost:9092
 
-Confirm chat-room topic exists
+- Confirm chat-room topic exists
 
 Frontend Build Errors
 
-Clear node_modules and reinstall dependencies
+- Clear node_modules and reinstall dependencies
 
-Check Node.js version compatibility
+- Check Node.js version compatibility
 
 ## Future Enhancements
-Message history loading
+- Message history loading
 
-Private messaging
+- Private messaging
 
-File sharing
+- File sharing
 
-Message reactions
+- Message reactions
 
-User avatars
+- User avatars
 
-Chat rooms/channels
+- Chat rooms/channels
 
-Message search
+- Message search
 
-Mobile app
+- Mobile app
 
 ## Contributing
 -Fork the repository
